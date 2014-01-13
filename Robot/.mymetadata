@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="robot"
+  id="myeclipse.1376378159875"
+  context-root="/robot"
+  j2ee-spec="5.0"
+  archive="robot.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

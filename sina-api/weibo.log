@@ -1,0 +1,28 @@
+0    WARN  [2013-09-11 18:42:29]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+0    WARN  [2013-09-11 19:25:19]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+0    WARN  [2013-09-11 19:26:17]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+0    INFO  [2013-09-11 19:28:34]  I/O exception (org.apache.commons.httpclient.NoHttpResponseException) caught when processing request: The server api.weibo.com failed to respond
+0    INFO  [2013-09-11 19:28:34]  Retrying request
+0    WARN  [2013-09-11 19:28:51]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+0    WARN  [2013-09-11 19:32:30]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+0    WARN  [2013-09-11 19:32:40]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+0    WARN  [2013-09-11 19:32:46]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+0    INFO  [2013-09-11 19:34:06]  I/O exception (java.net.ConnectException) caught when processing request: Connection timed out: connect
+0    INFO  [2013-09-11 19:34:06]  Retrying request
+203  WARN  [2013-09-11 19:34:06]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+0    INFO  [2013-09-11 19:34:51]  I/O exception (java.net.ConnectException) caught when processing request: Connection timed out: connect
+0    INFO  [2013-09-11 19:34:51]  Retrying request
+172  WARN  [2013-09-11 19:34:51]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+0    WARN  [2013-09-11 19:39:51]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+0    WARN  [2013-09-11 19:40:19]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+0    WARN  [2013-09-11 19:42:34]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+0    WARN  [2013-09-11 19:43:48]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+0    WARN  [2013-09-11 19:44:48]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+0    WARN  [2013-09-11 19:45:17]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+0    WARN  [2013-09-11 19:45:34]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+0    WARN  [2013-09-11 19:45:49]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+0    WARN  [2013-09-11 19:46:18]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+0    WARN  [2013-09-11 19:46:31]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+0    WARN  [2013-09-11 19:46:44]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+0    WARN  [2013-09-11 19:46:55]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+0    WARN  [2013-09-11 19:47:20]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.

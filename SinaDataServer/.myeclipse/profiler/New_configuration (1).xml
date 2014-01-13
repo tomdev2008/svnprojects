@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="profiler.settings.instrument.empty.methods">true</entry>
+<entry key="ProfilerCPUSettings_profile_runnables">true</entry>
+<entry key="profiler.settings.n.profiled.threads.limit">32</entry>
+<entry key="ProfilerCPUSettings_filter_type">2</entry>
+<entry key="profiler.settings.obj.alloc.stack.sampling.depth">-1</entry>
+<entry key="profiler.settings.instrument.method.invoke">true</entry>
+<entry key="profiler.settings.instr.scheme">1</entry>
+<entry key="ProfilerMemorySettings_track_every">10</entry>
+<entry key="ProfilerMemorySettings_mode">4</entry>
+<entry key="ProfilerCPUSettings_root_classes">cc.pp.weibo.algorithms.**
+cc.pp.weibo.analysis.common.**
+cc.pp.weibo.analysis.sinakeywords.**
+cc.pp.weibo.analysis.sinatopic.**
+cc.pp.weibo.analysis.single.weibo.**
+cc.pp.weibo.analysis.singleweibo.**
+cc.pp.weibo.analysis.user.baseinfo.**
+cc.pp.weibo.analysis.userbaseinfo.**
+cc.pp.weibo.analysis.userclassfy.**
+cc.pp.weibo.analysis.userfans.**
+cc.pp.weibo.analysis.userweibo.**
+cc.pp.weibo.common.**
+cc.pp.weibo.constant.**
+cc.pp.weibo.jdbc.**
+cc.pp.weibo.require.ppdongli.single.weibo.**
+cc.pp.weibo.result.**
+cc.pp.weibo.test.**
+cc.pp.weibo.utils.**
+weibo4j.**
+</entry>
+<entry key="ProfilerCPUSettings_filter_value">cc.pp.weibo.algorithms.*,&#13;
+cc.pp.weibo.analysis.common.*,&#13;
+cc.pp.weibo.analysis.sinakeywords.*,&#13;
+cc.pp.weibo.analysis.sinatopic.*,&#13;
+cc.pp.weibo.analysis.single.weibo.*,&#13;
+cc.pp.weibo.analysis.singleweibo.*,&#13;
+cc.pp.weibo.analysis.user.baseinfo.*,&#13;
+cc.pp.weibo.analysis.userbaseinfo.*,&#13;
+cc.pp.weibo.analysis.userclassfy.*,&#13;
+cc.pp.weibo.analysis.userfans.*,&#13;
+cc.pp.weibo.analysis.userweibo.*,&#13;
+cc.pp.weibo.common.*,&#13;
+cc.pp.weibo.constant.*,&#13;
+cc.pp.weibo.jdbc.*,&#13;
+cc.pp.weibo.require.ppdongli.single.weibo.*,&#13;
+cc.pp.weibo.result.*,&#13;
+cc.pp.weibo.test.*,&#13;
+cc.pp.weibo.utils.*,&#13;
+weibo4j.*</entry>
+<entry key="profiler.settings.istrument.getter.setter.methods">true</entry>
+<entry key="myeclipse.profiling.mode">0</entry>
+<entry key="ProfilerMemorySettings_stacktraces">-1</entry>
+<entry key="profiler.settings.sampling.interval">10</entry>
+<entry key="profiler.settings.cpu.profiling.type">0</entry>
+</properties>
