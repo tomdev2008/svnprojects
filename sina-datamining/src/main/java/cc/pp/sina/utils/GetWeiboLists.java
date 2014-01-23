@@ -53,7 +53,7 @@ public class GetWeiboLists {
 	public void getWbLists() throws SQLException {
 
 		String data = this.getAddWeibos(this.getWblistUrl());
-		JsonNode jsondata = JsonUtils.getJsonNode(data, "data");
+		JsonNode jsondata = JsonUtil.getJsonNode(data, "data");
 		String type, uid, url;
 		WeiboJDBC weibojdbc = new WeiboJDBC(this.ip);
 		if (weibojdbc.mysqlStatus()) {

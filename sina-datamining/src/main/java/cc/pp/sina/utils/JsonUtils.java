@@ -1,89 +1,59 @@
 package cc.pp.sina.utils;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Locale;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
-/**
- * JSON工具类，主要用于：
- * 1、从JSON字符串中获取指定字段的信息；
- * 2、从JSON字符串中，获取父节点中指定的子节点信息；
- * 
- * @author oujunfeng
- * @since 2013-04-09
- */
 public class JsonUtils {
+
+	private static final ObjectMapper mapper = new ObjectMapper();
+
+	private static DateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", Locale.ENGLISH);
+
+	static {
+		mapper.setDateFormat(dateFormat);
+	}
+
+	public static ObjectMapper getObjectMapper() {
+		return mapper;
+	}
+
 	/**
-	 * 日志输出
+	 *  测试函数
 	 */
-	private static Logger logger = Logger.getLogger(JsonUtils.class);
-	
-	/**
-	 * 从Json字符串中，
-	 * 获取Jackson格式的JsonNode
-	 * JsonNode:把json映射为树形结构，此结构由各个节点组成
-	 * 
-	 * @param jsonStr	Json字符串
-	 * @return			Jackson格式的JsonNode
-	 */
-	public static JsonNode getJsonNode(String jsonStr) {
-		
-		JsonNode jsonNode =null;
-		if (StringUtils.isEmpty(jsonStr)){
-			return jsonNode;
-		}
-		
-		ObjectMapper objectMapper = new ObjectMapper();
-        try {
-        	jsonNode = objectMapper.readTree(jsonStr);
-		} catch (JsonParseException e) {
-			logger.error("When JsonUtils Process getJsonNode JsonParseException", e);
-		} catch (JsonMappingException e) {
-			logger.error("When JsonUtils Process getJsonNode JsonMappingException", e);
+	public static void main(String[] args) throws ParseException {
+
+		//		System.out.println(dateFormat.format(new Date()));
+		//		Date parse = dateFormat.parse("Wed Oct 23 16:58:17 +0800 2013");
+		//		System.out.println(parse);
+
+		HashMap<String, Integer> result = new HashMap<String, Integer>();
+		result.put("aaa", 1111);
+		result.put("bbb", 2222);
+		result.put("ccc", 3333);
+		System.out.println(JsonUtils.toJson(result));
+	}
+
+	public static String toJson(Object object) {
+		try {
+			return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(object);
 		} catch (IOException e) {
-			logger.error("When JsonUtils Process getJsonNode IOException", e);
-		} catch (Exception e) {
-			logger.error("When JsonUtils Process getJsonNode Exception", e);
+			throw new RuntimeException(e);
 		}
-        return jsonNode;
 	}
-	
-	/**
-	 * 从Json字符串中，
-	 * 获取指定字段的Jackson格式的JsonNode
-	 * JsonNode:把json映射为树形结构中的一个节点
-	 * 
-	 * @param jsonStr	Json字符串
-	 * @return			Jackson格式的JsonNode
-	 */
-	public static JsonNode getJsonNode(String jsonStr,String fieldName) {
-		JsonNode node =null;
-        JsonNode jsonNode = JsonUtils.getJsonNode(jsonStr);
-        if (null != jsonNode){
-    		node =jsonNode.get(fieldName);
-    	}
-        return node;
-	}
-	
-	/**
-	 * 从指定的JsonNode中，获取指定字段的子JsonNode
-	 * 
-	 * @param parentNod  父JsonNode
-	 * @return			   父JsonNode的指定字段的子JsonNode
-	 */
-	public static JsonNode getJsonNode(JsonNode parentNode,String fieldName) {
-		JsonNode node = null;
-		if (StringUtils.isNotEmpty(fieldName) && (null != parentNode)){
-			node =parentNode.get(fieldName);
+
+	public static String toJsonWithoutPretty(Object object) {
+		try {
+			return mapper.writeValueAsString(object);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
-        return node;
 	}
+
+
 }
-
-
-

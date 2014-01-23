@@ -1,5 +1,9 @@
 package cc.pp.sina.analysis.single.weibo;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -14,6 +18,7 @@ import cc.pp.sina.common.MidToId;
 import cc.pp.sina.common.SourceType;
 import cc.pp.sina.jdbc.WeiboJDBC;
 import cc.pp.sina.result.SimpleWeiboResult;
+import cc.pp.sina.utils.JsonUtils;
 
 import com.sina.weibo.api.Timeline;
 import com.sina.weibo.model.Paging;
@@ -36,28 +41,31 @@ public class SimpleWeiboAnalysis implements Serializable {
 
 	/**
 	 * 测试函数
-	 * @param args
-	 * @throws SQLException 
-	 * @throws WeiboException 
-	 * @throws URIException 
+	 * @throws IOException
 	 */
-	public static void main(String[] args) throws WeiboException, SQLException, URIException {
+	public static void main(String[] args) throws WeiboException, SQLException, IOException {
 
-		SimpleWeiboAnalysis swa = new SimpleWeiboAnalysis("192.168.1.151");
-		String url = new String("http://weibo.com/1188552450/zBt6dbuLe");
-		WeiboJDBC weibojdbc = new WeiboJDBC("192.168.1.151");
-		//		if (weibojdbc.mysqlStatus()) {
-			int apicount = swa.analysis(weibojdbc, url);
-			System.out.println(apicount);
-		//			weibojdbc.sqlClose();
-		//		}
+		SimpleWeiboAnalysis swa = new SimpleWeiboAnalysis("127.0.0.1");
+		WeiboJDBC weibojdbc = new WeiboJDBC("127.0.0.1", "root", "root");
+		if (weibojdbc.mysqlStatus()) {
+			String info;
+			String[] infos;
+			try (BufferedReader br = new BufferedReader(new FileReader(new File("weibourls")));) {
+				while ((info = br.readLine()) != null) {
+					infos = info.split("	");
+					System.out.println(infos[0]);
+					swa.analysis(weibojdbc, infos[1]);
+				}
+			}
+			weibojdbc.sqlClose();
+		}
 	}
 
 	/**
 	 * 分析函数
-	 * @throws WeiboException 
-	 * @throws SQLException 
-	 * @throws URIException 
+	 * @throws WeiboException
+	 * @throws SQLException
+	 * @throws URIException
 	 */
 	public int analysis(WeiboJDBC weibojdbc, String url) throws WeiboException, SQLException, URIException {
 
@@ -91,8 +99,7 @@ public class SimpleWeiboAnalysis implements Serializable {
 		boolean addv;
 		long reposttime;
 		/***********获取该微博数据************/
-		//		String accesstoken = weibojdbc.getAccessToken();
-		String accesstoken = "2.00OKXevBdcZIJCee8ff5f68dtzKiEB";
+		String accesstoken = weibojdbc.getAccessToken();
 		Timeline tm = new Timeline();
 		tm.client.setToken(accesstoken);
 		MidToId midtoid = new MidToId();
@@ -174,7 +181,7 @@ public class SimpleWeiboAnalysis implements Serializable {
 				exposionsum += fanssum;
 				/***************4、情感值***************/
 				if (cursor < 2) {
-					weiboUtils.setEmotions(emotion, emotions, text);
+					//					weiboUtils.setEmotions(emotion, emotions, text);
 				}
 				/***************认证分布*****************/
 				verifiedtype[weiboUtils.checkVerifyType(verifytype)]++;
@@ -219,12 +226,12 @@ public class SimpleWeiboAnalysis implements Serializable {
 		/*****************层级分析*****************/
 		result.setSuminclass(suminclass);
 		/***************关键词提取*****************/
-		weiboUtils.keywordsArrange(result, str);
+		//		weiboUtils.keywordsArrange(result, str);
 		/***************总体评价*****************/
 		weiboUtils.lastCommentArrange(result, allexposion, emotions, gender, location, reposterquality);
 		/************结果数据存储************/
 		jsonresult = JSONArray.fromObject(result);
-		System.out.println(jsonresult);
+		System.out.println(JsonUtils.toJson(result.getReposttimelineby24H()));
 		//		WeiboJDBC mysql = new WeiboJDBC(154); // 存储到154上面
 		//		if (mysql.mysqlStatus()) {
 		//			mysql.insertWeiboResult(wid, url, jsonresult.toString());

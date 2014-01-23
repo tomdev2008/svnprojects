@@ -15,7 +15,7 @@ import cc.pp.sina.common.Emotion;
 import cc.pp.sina.common.MidToId;
 import cc.pp.sina.jdbc.WeiboJDBC;
 import cc.pp.sina.result.SimpleWeiboResult;
-import cc.pp.sina.utils.JsonUtils;
+import cc.pp.sina.utils.JsonUtil;
 import cc.pp.sina.utils.WordSegment;
 
 import com.sina.weibo.api.Timeline;
@@ -88,7 +88,7 @@ public class SWeiboUtils {
 			emotions[2]++; // 2---中性
 		} else {
 			String data = emotion.getEmotion(text);
-			JsonNode jsondata = JsonUtils.getJsonNode(data);
+			JsonNode jsondata = JsonUtil.getJsonNode(data);
 			double label = jsondata.get("label").getDoubleValue();
 			double score = jsondata.get("score").getDoubleValue();
 			if (label < 0.5) {
@@ -436,7 +436,7 @@ public class SWeiboUtils {
 		for (int i = 0; i < max; i++) {
 			sentence = str.substring(i * 500, (i + 1) * 500);
 			strdata = wordseg.getWordsSeg(sentence);
-			jsondata = JsonUtils.getJsonNode(strdata);
+			jsondata = JsonUtil.getJsonNode(strdata);
 			for (int j = 0; j < jsondata.get(0).size(); j++) {
 				key = jsondata.get(0).get(Integer.toString(j)).toString().replaceAll("\"", "");
 				if (words.get(key) == null) {

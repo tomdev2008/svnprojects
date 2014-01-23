@@ -8,7 +8,7 @@ import org.codehaus.jackson.JsonNode;
 
 import cc.pp.sina.common.Emotion;
 import cc.pp.sina.jdbc.UfiJDBC;
-import cc.pp.sina.utils.JsonUtils;
+import cc.pp.sina.utils.JsonUtil;
 
 import com.sina.weibo.api.Comments;
 import com.sina.weibo.model.CommentWapper;
@@ -106,7 +106,7 @@ public class GetAtInfo {
 			text = text.substring(0, text.indexOf("//"));
 		}
 		data = emotion.getEmotion(text);
-		jsondata = JsonUtils.getJsonNode(data);
+		jsondata = JsonUtil.getJsonNode(data);
 		label = jsondata.get("label").getDoubleValue();
 		score = jsondata.get("score").getDoubleValue();
 		if (label < 0.5) {

@@ -32,13 +32,13 @@ public class WeiRenWuUtil {
 		myjdbc.mysqlStatus();
 
 		try {
-			for (int page = 1; page <= 1003; page++) {
+			for (int page = 1; page <= 1057; page++) {
 				System.out.println("Page: " + page);
 				List<BozhuInfo> bozhuInfos = weiRenWuUtil.parserBozhuInfo(page);
 				if (bozhuInfos != null) {
 					for (BozhuInfo bozhuInfo : bozhuInfos) {
-						myjdbc.inserWeiRenWu("weirenwu_zhifa", bozhuInfo);
-						//						myjdbc.inserWeiRenWu("weirenwu_zhuanfa", bozhuInfo);
+						//						myjdbc.inserWeiRenWu("weirenwu_zhifa", bozhuInfo);
+						myjdbc.inserWeiRenWu("weirenwu_zhuanfa", bozhuInfo);
 					}
 				}
 			}
@@ -53,8 +53,8 @@ public class WeiRenWuUtil {
 	public List<BozhuInfo> parserBozhuInfo(int page) {
 
 		List<BozhuInfo> result = new ArrayList<BozhuInfo>();
-		//		String html = getZhuanfaHtml(page);
-		String html = getZhifaHtml(page);
+		String html = getZhuanfaHtml(page);
+		//		String html = getZhifaHtml(page);
 		if ("error".equals(html)) {
 			System.out.println("Get html error!");
 			return null;
@@ -97,25 +97,28 @@ public class WeiRenWuUtil {
 
 			method.setRequestHeader("Host", "weirenwu.weibo.com");
 			method.setRequestHeader("User-Agent",
-					"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36");
+					"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36");
 			method.setRequestHeader("Connection", "keep-alive");
 			method.setRequestHeader("Accept",
 					"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
 			method.setRequestHeader("Content-Encoding", "gzip,deflate,sdch");
-			method.setRequestHeader("Accept-Language", "zh-CN,zh;q=0.8");
+			method.setRequestHeader("Accept-Language", "zh-CN,zh;q=0.8,en;q=0.6");
+			method.setRequestHeader("Referer", "http://weirenwu.weibo.com/taskv2/index.php?c=task.addseluser");
 			method.setRequestHeader(
 					"Cookie",
-					"SINAGLOBAL=6615351682994.515.1383097688740; Hm_lvt_3d143f0a07b6487f65609d8411e5464f=1383097689,1383115077,1383119735; "
-							+ "myuid=3457840342; SSOLoginState=1384847494; wvr=5; _s_tentry=login.sina.com.cn; Apache=3097587162628.77.1384847492317; "
-							+ "ULV=1384847492330:4:3:1:3097587162628.77.1384847492317:1384143109195; Hm_lvt_3d143f0a07b6487f65609d8411e5464f=1384143635,"
-							+ "1384144976,1384399509,1384847491; Hm_lpvt_3d143f0a07b6487f65609d8411e5464f=1384947361; UOR=,,developer.51cto.com; "
-							+ "USRHAWB=usrmdins21149; PHPSESSID=bn7e928qtnaiiv1namgun8jm47; SUE=es%3D92040d47d55d4e052e41da3f5cdc4bbd%26ev%3Dv1%26"
-							+ "es2%3De584bad162d845ff886bc08a2b54c941%26rs0%3Df%252BaOlpYHP1sTlSI0HRm4XZL5vuPBA7gOMzjTa2kHKn89QV5wqlPTcj6i2Aor39L4"
-							+ "FAIAShC%252F4dxPRLeqCtlxiEnCuwx4KjsRFfMS66hT%252BYnVNzEZJs0O1zKG5MqMkrqbkEiYQnClxAKbi134aIRkpc2EX4AGpWVND6V7t%252Fw"
-							+ "tYDg%253D%26rv%3D0; SUP=cv%3D1%26bt%3D1385023362%26et%3D1385109762%26d%3Dc909%26i%3D139c%26us%3D1%26vf%3D0%26vt%3D0"
-							+ "%26ac%3D%26st%3D0%26uid%3D2807724022%26name%3Dnickyx%2540126.com%26nick%3D%25E7%259A%25AE%25E7%259A%25AE%25E5%258A%2"
-							+ "5A8%25E5%258A%259B%26fmp%3D%26lcp%3D2012-05-19%252013%253A46%253A19; SUS=SID-2807724022-1385023362-XD-uh47x-845e6c0c"
-							+ "83c822b4922d89a1c5e0a9b0; ALF=1387615311; WBStore=05e39925d85ca3ea|undefined");
+					"SINAGLOBAL=6615351682994.515.1383097688740; Hm_lvt_3d143f0a07b6487f65609d8411e5464f=1383097689,1383115077,"
+							+ "1383119735; Hm_lvt_3d143f0a07b6487f65609d8411e5464f=1384143635,1384144976,1384399509,1384847491; _s_tentry"
+							+ "=www.techsiteanalytics.com; Apache=5281812825705.856.1389607307706; ULV=1389607308262:11:2:1:5281812825705"
+							+ ".856.1389607307706:1388654932404; login_sid_t=3f5c50e0e4323bbd28ff050b7092b88e; PHPSESSID=atd1cvo2nhmnpt1"
+							+ "fp6vk7dn815; USRHAWB=usrmdins21250; myuid=1862087393; SUB=AemZEg0d7%2BVzVTis1FH2Or4a6KacLaq4KcBS2Y89qVHv8N"
+							+ "I6QVZv%2FXvsCPBCJfYID66Do7uic9GChcDRAwlei4i2NJdr2WgpPvPJ44TGRv7T; UOR=,,login.sina.com.cn; SUE=es%3D1c371b"
+							+ "145cac9bfa61529578e3d35af0%26ev%3Dv1%26es2%3Df57f57e39422e09548eaf0fea3afb1a5%26rs0%3Dq6%252FzKjDljqpjpwar"
+							+ "GNrMl2XdNt4J3hO2ZzHV0QUY4k5ArcS6uJLiiAcaZbzFuee5ASlo0DGmfSiSDaRdUlsF7ZuxFhKoiPZKTz9h%252BiWGWOWlVk3NoS2eSVW"
+							+ "7IYSvd9SucpPV2dHef7z8M6xPnCTuQStw%252BXBn8dHN%252Bs%252FqsA0aBDA%253D%26rv%3D0; SUP=cv%3D1%26bt%3D138995878"
+							+ "7%26et%3D1390045187%26d%3Dc909%26i%3D3df6%26us%3D1%26vf%3D0%26vt%3D0%26ac%3D27%26st%3D0%26uid%3D2807724022%"
+							+ "26name%3Dnickyx%2540126.com%26nick%3D%25E7%259A%25AE%25E7%259A%25AE%25E5%258A%25A8%25E5%258A%259B%26fmp%3D%2"
+							+ "6lcp%3D2012-05-19%252013%253A46%253A19; SUS=SID-2807724022-1389958787-XD-hrq6p-9bd75b707963127eae3670a3eea0a"
+							+ "9b0; ALF=1392550787; SSOLoginState=1389958787; un=nickyx@126.com; wvr=5; WBStore=8d05b2d45893c0dd|undefined");
 
 			method.setRequestHeader("Connection", "keep-alive");
 			int status = client.executeMethod(method);
@@ -157,23 +160,25 @@ public class WeiRenWuUtil {
 			method.setRequestHeader("Accept",
 					"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
 			method.setRequestHeader("User-Agent",
-					"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36");
+					"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36");
 			method.setRequestHeader("Content-Encoding", "gzip,deflate,sdch");
-			method.setRequestHeader("Accept-Language", "zh-CN,zh;q=0.8");
-			method.setRequestHeader("Referer", "http://weirenwu.weibo.com/taskv2/index.php?c=task.addseluser&p=2");
+			method.setRequestHeader("Accept-Language", "zh-CN,zh;q=0.8,en;q=0.6");
+			method.setRequestHeader("Referer", "http://weirenwu.weibo.com/taskv2/index.php?c=task.addseluser");
 			method.setRequestHeader(
 					"Cookie",
-					"SINAGLOBAL=6615351682994.515.1383097688740; Hm_lvt_3d143f0a07b6487f65609d8411e5464f=1383097689,1383115077,1383119735; "
-							+ "myuid=3457840342; SSOLoginState=1384847494; wvr=5; _s_tentry=login.sina.com.cn; Apache=3097587162628.77.1384847492317;"
-							+ " ULV=1384847492330:4:3:1:3097587162628.77.1384847492317:1384143109195; Hm_lvt_3d143f0a07b6487f65609d8411e5464f=138414"
-							+ "3635,1384144976,1384399509,1384847491; Hm_lpvt_3d143f0a07b6487f65609d8411e5464f=1384947361; UOR=,,developer.51cto.com;"
-							+ " USRHAWB=usrmdins21149; PHPSESSID=bn7e928qtnaiiv1namgun8jm47; SUE=es%3D92040d47d55d4e052e41da3f5cdc4bbd%26ev%3Dv1%26es"
-							+ "2%3De584bad162d845ff886bc08a2b54c941%26rs0%3Df%252BaOlpYHP1sTlSI0HRm4XZL5vuPBA7gOMzjTa2kHKn89QV5wqlPTcj6i2Aor39L4FAIA"
-							+ "ShC%252F4dxPRLeqCtlxiEnCuwx4KjsRFfMS66hT%252BYnVNzEZJs0O1zKG5MqMkrqbkEiYQnClxAKbi134aIRkpc2EX4AGpWVND6V7t%252FwtYDg%25"
-							+ "3D%26rv%3D0; SUP=cv%3D1%26bt%3D1385023362%26et%3D1385109762%26d%3Dc909%26i%3D139c%26us%3D1%26vf%3D0%26vt%3D0%26ac%3D%"
-							+ "26st%3D0%26uid%3D2807724022%26name%3Dnickyx%2540126.com%26nick%3D%25E7%259A%25AE%25E7%259A%25AE%25E5%258A%25A8%25E5%2"
-							+ "58A%259B%26fmp%3D%26lcp%3D2012-05-19%252013%253A46%253A19; SUS=SID-2807724022-1385023362-XD-uh47x-845e6c0c83c822b4922"
-							+ "d89a1c5e0a9b0; ALF=1387615311; WBStore=4c140d5dbadaf188|undefined");
+					"SINAGLOBAL=6615351682994.515.1383097688740; Hm_lvt_3d143f0a07b6487f65609d8411e5464f=1383097689,1383115077,1383119735;"
+							+ " Hm_lvt_3d143f0a07b6487f65609d8411e5464f=1384143635,1384144976,1384399509,1384847491; _s_tentry=www.techsiteana"
+							+ "lytics.com; Apache=5281812825705.856.1389607307706; ULV=1389607308262:11:2:1:5281812825705.856.1389607307706:"
+							+ "1388654932404; login_sid_t=3f5c50e0e4323bbd28ff050b7092b88e; PHPSESSID=atd1cvo2nhmnpt1fp6vk7dn815; USRHAWB=usr"
+							+ "mdins21250; myuid=1862087393; SUB=AemZEg0d7%2BVzVTis1FH2Or4a6KacLaq4KcBS2Y89qVHv8NI6QVZv%2FXvsCPBCJfYID66Do7u"
+							+ "ic9GChcDRAwlei4i2NJdr2WgpPvPJ44TGRv7T; UOR=,,login.sina.com.cn; SUE=es%3D1c371b145cac9bfa61529578e3d35af0%26ev"
+							+ "%3Dv1%26es2%3Df57f57e39422e09548eaf0fea3afb1a5%26rs0%3Dq6%252FzKjDljqpjpwarGNrMl2XdNt4J3hO2ZzHV0QUY4k5ArcS6uJL"
+							+ "iiAcaZbzFuee5ASlo0DGmfSiSDaRdUlsF7ZuxFhKoiPZKTz9h%252BiWGWOWlVk3NoS2eSVW7IYSvd9SucpPV2dHef7z8M6xPnCTuQStw%252B"
+							+ "XBn8dHN%252Bs%252FqsA0aBDA%253D%26rv%3D0; SUP=cv%3D1%26bt%3D1389958787%26et%3D1390045187%26d%3Dc909%26i%3D3df6%"
+							+ "26us%3D1%26vf%3D0%26vt%3D0%26ac%3D27%26st%3D0%26uid%3D2807724022%26name%3Dnickyx%2540126.com%26nick%3D%25E7%25"
+							+ "9A%25AE%25E7%259A%25AE%25E5%258A%25A8%25E5%258A%259B%26fmp%3D%26lcp%3D2012-05-19%252013%253A46%253A19; SUS=SID-"
+							+ "2807724022-1389958787-XD-hrq6p-9bd75b707963127eae3670a3eea0a9b0; ALF=1392550787; SSOLoginState=1389958787; un="
+							+ "nickyx@126.com; WBStore=8d05b2d45893c0dd|undefined");
 
 			int status = client.executeMethod(method);
 			if (status == 200) {

@@ -35,7 +35,7 @@ public class WordSegment implements Serializable {
 		// TODO Auto-generated method stub
 		WordSegment wordsseg = new WordSegment();
 		String result = wordsseg.getWordsSeg("初二因为什么事情不记得");
-		JsonNode jsondata = JsonUtils.getJsonNode(result);
+		JsonNode jsondata = JsonUtil.getJsonNode(result);
 		System.out.println(jsondata.get(0).get("0").toString().replaceAll("\"", ""));
 	}
 	

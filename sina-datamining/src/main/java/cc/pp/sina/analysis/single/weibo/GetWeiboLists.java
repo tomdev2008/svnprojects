@@ -14,7 +14,7 @@ import org.codehaus.jackson.JsonNode;
 import cc.pp.sina.common.Encryption;
 import cc.pp.sina.jdbc.WeiboJDBC;
 import cc.pp.sina.utils.HttpUtils;
-import cc.pp.sina.utils.JsonUtils;
+import cc.pp.sina.utils.JsonUtil;
 
 public class GetWeiboLists {
 
@@ -53,7 +53,7 @@ public class GetWeiboLists {
 	public void getWbLists() throws SQLException {
 
 		String data = this.getAddWeibos(this.getWblistUrl());
-		JsonNode jsondata = JsonUtils.getJsonNode(data, "data");
+		JsonNode jsondata = JsonUtil.getJsonNode(data, "data");
 		String type, uid, url;
 		WeiboJDBC weibojdbc = new WeiboJDBC(this.ip);
 		if (weibojdbc.mysqlStatus()) {

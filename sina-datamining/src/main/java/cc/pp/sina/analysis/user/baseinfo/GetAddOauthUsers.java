@@ -10,7 +10,7 @@ import org.codehaus.jackson.JsonNode;
 
 import cc.pp.sina.jdbc.UbiaJDBC;
 import cc.pp.sina.utils.HttpUtils;
-import cc.pp.sina.utils.JsonUtils;
+import cc.pp.sina.utils.JsonUtil;
 
 /**
  * Title: 获取增加的授权用户信息
@@ -58,7 +58,7 @@ public class GetAddOauthUsers implements Serializable {
 		String url = this.getUrl(type, bid);
 		HttpUtils httpUtils = new HttpUtils();
 		String data = httpUtils.getAddUsers(url);
-		JsonNode jsondata = JsonUtils.getJsonNode(data, "list");   // 字段名改下
+		JsonNode jsondata = JsonUtil.getJsonNode(data, "list");   // 字段名改下
 		String info = new String();
 		int k = 0;
 		for (int i = 0; i < jsondata.size(); i++) {
@@ -83,7 +83,7 @@ public class GetAddOauthUsers implements Serializable {
 		String url = this.getUrl(type, bid);
 		HttpUtils httpUtils = new HttpUtils();
 		String data = httpUtils.getAddUsers(url);
-		JsonNode jsondata = JsonUtils.getJsonNode(data, "list");   // 字段名改下
+		JsonNode jsondata = JsonUtil.getJsonNode(data, "list");   // 字段名改下
 		String bind = new String();
 		String username = new String();
 		String accesstoken = new String();
